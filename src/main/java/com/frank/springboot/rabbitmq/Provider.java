@@ -1,4 +1,5 @@
 package com.frank.springboot.rabbitmq;
+import com.frank.springboot.mqutils.RabbitMQUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -18,13 +19,16 @@ public class Provider {
     @Test
     public void testSendMessage() throws IOException, TimeoutException {
         //1、与rabbitmq建立连接，获取一个连接对象
-        ConnectionFactory connectionFactory = new ConnectionFactory();//创建连接mq的连接工厂对象
-        connectionFactory.setHost("127.0.0.1");//设置连接rabbitmq主机
-        connectionFactory.setPort(5672); //设置端口
-        connectionFactory.setVirtualHost("/testhost"); //设置连接哪个虚拟主机
-        connectionFactory.setUsername("test"); //设置访问虚拟主机的帐号密码
-        connectionFactory.setPassword("test"); //设置访问虚拟主机的帐号密码
-        Connection connection = connectionFactory.newConnection();//获取连接对象
+//        ConnectionFactory connectionFactory = new ConnectionFactory();//创建连接mq的连接工厂对象
+//        connectionFactory.setHost("127.0.0.1");//设置连接rabbitmq主机
+//        connectionFactory.setPort(5672); //设置端口
+//        connectionFactory.setVirtualHost("/testhost"); //设置连接哪个虚拟主机
+//        connectionFactory.setUsername("test"); //设置访问虚拟主机的帐号密码
+//        connectionFactory.setPassword("test"); //设置访问虚拟主机的帐号密码
+//        Connection connection = connectionFactory.newConnection();//获取连接对象
+
+        //通过工具类获取连接对象
+        Connection connection = RabbitMQUtils.getConnection();
 
         //2、生产消息，发给队列（连接通过通道传递消息）
         Channel channel = connection.createChannel();//获取连接中的通道
@@ -41,7 +45,8 @@ public class Provider {
         channel.basicPublish("","hellomq",null,"hello rabbitmq!".getBytes());
 
         //3、后续处理
-        channel.close(); //关闭通道
-        connection.close();//关闭链接
+//        channel.close(); //关闭通道
+//        connection.close();//关闭链接
+        RabbitMQUtils.closeChannelandConnection(channel,connection);
     }
 }
