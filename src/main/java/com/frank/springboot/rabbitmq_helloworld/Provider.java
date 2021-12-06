@@ -1,8 +1,7 @@
-package com.frank.springboot.rabbitmq;
+package com.frank.springboot.rabbitmq_helloworld;
 import com.frank.springboot.mqutils.RabbitMQUtils;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 import org.junit.Test;
 
@@ -45,11 +44,11 @@ public class Provider {
         //参数1：交换机名，参数2：队列名，参数3：消息传递额外设置（比如null不设置），参数4：消息具体内容（要求将字符串转化为字节数组byte[]）
         channel.basicPublish("","hellomq2", MessageProperties.PERSISTENT_TEXT_PLAIN,"hello rabbitmq!".getBytes());
 
-        /*
-3、后续处理
-        channel.close(); //关闭通道
-        connection.close();//关闭链接
-*/
+
+        //3、后续处理
+//        channel.close(); //关闭通道
+//        connection.close();//关闭链接
+
         RabbitMQUtils.closeChannelandConnection(channel,connection);
     }
 }
