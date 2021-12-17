@@ -39,6 +39,12 @@ public class TestRabbitMQProvider {
     //第三种模型：fanout（发布/订阅，或广播）
     @Test
     public void testFanout(){
-        rabbitTemplate.convertAndSend("logs","","Fanout模型发送的消息");//fanout模型中路由key不需要
+        rabbitTemplate.convertAndSend("logs2","","Fanout模型发送的消息");//fanout模型中路由key不需要
+    }
+
+    //第四种模型：Routing之订阅模型-Direct（直连）
+    @Test
+    public void testRoutingDirect(){
+        rabbitTemplate.convertAndSend("routingDirect","info","Routing之订阅模型-Direct（直连）发送的消息");
     }
 }

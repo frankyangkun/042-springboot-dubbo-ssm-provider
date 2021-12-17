@@ -20,7 +20,7 @@ public class FanoutConsumer {
     @RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue,//创建临时队列，如果写成@Queue("xxx")就是指定生成的队列名
-                    exchange = @Exchange(value = "logs",type = "fanout"))//绑定的交换机，指定交换机名为logs
+                    exchange = @Exchange(value = "logs2",type = "fanout"))//绑定的交换机，指定交换机名为logs
     })
     public void getMsg1(String message){
         System.out.println("message1= " + message);
@@ -30,7 +30,7 @@ public class FanoutConsumer {
     @RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue,
-                    exchange = @Exchange(value = "logs",type = "fanout"))
+                    exchange = @Exchange(value = "logs2",type = "fanout"))
     })
     public void getMsg2(String message){
         System.out.println("message2= " + message);
