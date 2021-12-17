@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 /**
  * 2021-12-15 16:49:21
  * 生产者
- * SpringBoot整合RabbitMQ（第一种模型：直连）
+ * SpringBoot整合RabbitMQ
  * 这里demo中provider和consumer都在Provider项目中，没有分到不同项目中。
  */
 @SpringBootTest(classes = Application.class)//指定测试类（应该就是入口类）
@@ -24,7 +24,15 @@ public class TestRabbitMQProvider {
 
     //第一种模型hello world，生产者只需要往队列发消息，消费者监听消费即可
     @Test
-    public void test(){
+    public void testHello(){
         rabbitTemplate.convertAndSend("hello","hello world");//发送到名为hello的队列中，可直接发对象过去，之前纯java api是用byte发消息
+    }
+
+    //第二种模型，工作队列，默认多条消息平均分给多个消费者消费
+    @Test
+    public void testWork(){
+        for (int i = 0; i < 10; i++) {
+            rabbitTemplate.convertAndSend("work","work模型" + i);
+        }
     }
 }
