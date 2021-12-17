@@ -28,11 +28,17 @@ public class TestRabbitMQProvider {
         rabbitTemplate.convertAndSend("hello","hello world");//发送到名为hello的队列中，可直接发对象过去，之前纯java api是用byte发消息
     }
 
-    //第二种模型，工作队列，默认多条消息平均分给多个消费者消费
+    //第二种模型：工作队列，默认多条消息平均分给多个消费者消费
     @Test
     public void testWork(){
         for (int i = 0; i < 10; i++) {
             rabbitTemplate.convertAndSend("work","work模型" + i);
         }
+    }
+
+    //第三种模型：fanout（发布/订阅，或广播）
+    @Test
+    public void testFanout(){
+        rabbitTemplate.convertAndSend("logs","","Fanout模型发送的消息");//fanout模型中路由key不需要
     }
 }

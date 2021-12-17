@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 2021-12-17 10:39:47
+ * SpringBoot整合RabbitMQ
  * 第二种模型：工作队列
  * 消费者
  */
