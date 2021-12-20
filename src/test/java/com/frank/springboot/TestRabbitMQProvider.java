@@ -53,5 +53,4 @@ public class TestRabbitMQProvider {
     public void testRoutingTopic(){
         rabbitTemplate.convertAndSend("routingTopics","user.save","user.save路由信息");
     }
-
 }
