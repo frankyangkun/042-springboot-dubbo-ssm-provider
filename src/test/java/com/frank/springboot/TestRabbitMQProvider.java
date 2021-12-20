@@ -47,4 +47,11 @@ public class TestRabbitMQProvider {
     public void testRoutingDirect(){
         rabbitTemplate.convertAndSend("routingDirect","info","Routing之订阅模型-Direct（直连）发送的消息");
     }
+
+    //第四种模型：Routing之订阅模型-Topic（动态路由）
+    @Test
+    public void testRoutingTopic(){
+        rabbitTemplate.convertAndSend("routingTopics","user.save","user.save路由信息");
+    }
+
 }
