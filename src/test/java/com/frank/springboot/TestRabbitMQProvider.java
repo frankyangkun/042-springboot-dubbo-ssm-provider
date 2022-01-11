@@ -25,7 +25,7 @@ public class TestRabbitMQProvider {
     //第一种模型hello world，生产者只需要往队列发消息，消费者监听消费即可
     @Test
     public void testHello(){
-        rabbitTemplate.convertAndSend("hello","hello world");//发送到名为hello的队列中，可直接发对象过去，之前纯java api是用byte发消息
+        rabbitTemplate.convertAndSend("hellodocker","hello world docker");//发送到名为hello的队列中，可直接发对象过去，之前纯java api是用byte发消息
     }
 
     //第二种模型：工作队列，默认多条消息平均分给多个消费者消费

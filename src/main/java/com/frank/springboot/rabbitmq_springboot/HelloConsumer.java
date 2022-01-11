@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * 这里demo中provider和consumer都在Provider项目中，没有分到不同项目中。
  */
 @Component //首先要被工厂扫描到
-@RabbitListener(queuesToDeclare = @Queue(value = "hello",durable = "true",autoDelete = "false")) //代表是RabbitMQ消费者，并指定监听哪个队列的消息，queuesToDeclare没有队列就声明一个
+@RabbitListener(queuesToDeclare = @Queue(value = "hellodocker",durable = "true",autoDelete = "false")) //代表是RabbitMQ消费者，并指定监听哪个队列的消息，queuesToDeclare没有队列就声明一个
 //默认是持久化，非独占，不自动删除的队列，@Queue参数2，3都可省略
 public class HelloConsumer {
 
